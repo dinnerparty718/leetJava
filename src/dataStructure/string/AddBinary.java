@@ -2,8 +2,7 @@ package dataStructure.string;
 
 import java.math.BigInteger;
 
-// todo use charAt(i)
-// todo optimized
+//
 // Bit-by-Bit Computation
 public class AddBinary {
 
@@ -14,6 +13,7 @@ public class AddBinary {
   //  3   carry << 1
   //      result = a
 
+  // bigInteger
   public String addBinary2(String a, String b) {
     BigInteger x = new BigInteger(a, 2);
     BigInteger y = new BigInteger(b, 2);
@@ -110,11 +110,49 @@ public class AddBinary {
     return sb.toString();
   }
 
+  public String addBinary4(String a, String b) {
+    int i = a.length() - 1;
+    int j = b.length() - 1;
+
+    StringBuilder sb = new StringBuilder();
+
+    int carry = 0;
+
+    while (i >= 0 || j >= 0) {
+      int sum = 0;
+
+      if (i >= 0) {
+        sum += a.charAt(i) - '0';
+        i--;
+      }
+
+      if (j >= 0) {
+        sum += b.charAt(j) - '0';
+        j--;
+      }
+      sum += carry;
+
+      if (sum / 2 >= 1) {
+        sb.append(sum % 2 + "");
+        carry = 1;
+      } else {
+        sb.append(sum);
+        carry = 0;
+      }
+    }
+
+    if (carry == 1) {
+      sb.append("1");
+    }
+
+    return sb.reverse().toString();
+  }
+
   public static void main(String[] args) {
     AddBinary solution = new AddBinary();
     String a = "1010";
     String b = "1011";
 
-    System.out.println(solution.addBinary2(a, b));
+    System.out.println(solution.addBinary4(a, b));
   }
 }
