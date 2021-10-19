@@ -1,5 +1,8 @@
 package dataStructure.string;
 
+import java.math.BigInteger;
+
+// todo use charAt(i)
 // Bit-by-Bit Computation
 public class AddBinary {
 
@@ -64,11 +67,26 @@ public class AddBinary {
   public static void main(String[] args) {
     AddBinary solution = new AddBinary();
 
-    String a = "0";
-    String b = "0";
+    String a = "1010";
+    String b = "1011";
 
-    String res = solution.addBinary(a, b);
+    // todo bit manipulation
 
-    System.out.println(res);
+    BigInteger x = new BigInteger(a, 2);
+    BigInteger y = new BigInteger(b, 2);
+
+    BigInteger zero = new BigInteger("0", 2);
+
+    BigInteger carry, answer;
+
+    while (y.compareTo(zero) != 0) {
+      answer = x.xor(y);
+      carry = x.and(y).shiftLeft(1);
+      x = answer;
+      y = carry;
+    }
+    System.out.println(x.toString(2));
+
+    System.out.println(solution.addBinary(a, b));
   }
 }
