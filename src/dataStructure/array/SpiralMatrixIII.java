@@ -5,8 +5,6 @@ public class SpiralMatrixIII {
   public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
     int[][] result = new int[rows * cols][2];
 
-    int[][] d = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
-
     int top = rStart;
     int bottom = rStart;
     int left = cStart;
@@ -14,62 +12,71 @@ public class SpiralMatrixIII {
 
     int index = 0;
 
-    int r = 1;
-
     result[index] = new int[] { rStart, cStart };
 
     int[] current = result[index];
     index++;
 
-    // arrayToString(current);
 
     while (index < rows * cols) {
       // move right
 
       right++;
 
-      for (int col = current[1] + 1; col <= right && col <= cols - 1; col++) {
-        result[index++] = new int[] { top, col };
+      for (int col = current[1] + 1; col <= right; col++) {
+        if (col <= cols - 1 && col >= 0 && top >= 0) {
+          result[index++] = new int[] { top, col };
+        }
       }
 
-      current = result[index - 1];
-
-      // arrayToString(current);
+      current = new int[] { current[0], right };
 
       bottom++;
 
-      for (int row = current[0] + 1; row <= bottom && row <= rows - 1; row++) {
-        if (right <= cols - 1) {
+      for (int row = current[0] + 1; row <= bottom; row++) {
+        if (row <= rows - 1 && row >= 0 && right <= cols - 1) {
           result[index++] = new int[] { row, right };
         }
       }
 
-      current = result[index - 1];
+      current = new int[] { bottom, current[1] };
 
       left--;
 
-      // for(int col = )
+      for (int col = current[1] - 1; col >= left; col--) {
+        if (col >= 0 && col <= cols - 1 && bottom <= rows - 1) {
+          result[index++] = new int[] { bottom, col };
+        }
+      }
 
-      // arrayToString(current);
+      current = new int[] { current[0], left };
 
-      // result[index++] = new int[] { rStart, cStart };
+      top--;
 
-      break;
-      // end condition index === rows
+      for (int row = current[0] - 1; row >= top; row--) {
+        if (row >= 0 && row <= rows - 1 && left >= 0) {
+          result[index++] = new int[] { row, left };
+        }
+      }
+
+      current = new int[] { top, current[1] };
+
     }
 
     return result;
   }
 
-  private void arrayToString(int[] input) {
-    System.out.println("[ " + input[0] + ", " + input[1] + " ]");
+  private String arrayToString(int[] input) {
+    // System.out.println("[ " + input[0] + ", " + input[1] + " ]");
+
+    return "[ " + input[0] + ", " + input[1] + " ]";
   }
 
   public static void main(String[] args) {
-    int rows = 5;
-    int cols = 6;
-    int rStart = 1;
-    int cStart = 4;
+    int rows = 1;
+    int cols = 4;
+    int rStart = 0;
+    int cStart = 0;
 
     SpiralMatrixIII solution = new SpiralMatrixIII();
 
