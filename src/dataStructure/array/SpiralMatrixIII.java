@@ -66,11 +66,7 @@ public class SpiralMatrixIII {
     return result;
   }
 
-  private String arrayToString(int[] input) {
-    // System.out.println("[ " + input[0] + ", " + input[1] + " ]");
 
-    return "[ " + input[0] + ", " + input[1] + " ]";
-  }
 
   public static void main(String[] args) {
     int rows = 1;
