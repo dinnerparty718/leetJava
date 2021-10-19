@@ -3,8 +3,54 @@ package dataStructure.string;
 import java.math.BigInteger;
 
 // todo use charAt(i)
+// todo optimized
 // Bit-by-Bit Computation
 public class AddBinary {
+
+  // bit manipulation
+  // while( carry > 0)
+  //  1.  && calculate carry
+  //  2.  XOR simuliate add and store in a
+  //  3   carry << 1
+  //      result = a
+
+  public String addBinary2(String a, String b) {
+    BigInteger x = new BigInteger(a, 2);
+    BigInteger y = new BigInteger(b, 2);
+
+    // let y be the carry, x be the result
+
+    BigInteger carry;
+    BigInteger answer; // tmp value
+    BigInteger zero = new BigInteger("0", 2);
+
+    while (y.compareTo(zero) != 0) {
+      answer = x.xor(y);
+      carry = x.and(y).shiftLeft(1);
+      y = carry;
+      x = answer;
+    }
+
+    return x.toString(2);
+  }
+
+  // integer
+  public String addBinary3(String a, String b) {
+    Integer x = Integer.valueOf(a, 2);
+    Integer y = Integer.valueOf(b, 2);
+
+    int carry;
+    int tmp;
+
+    while (y != 0) {
+      carry = (x & y) << 1;
+      tmp = x ^ y;
+      y = carry;
+      x = tmp;
+    }
+
+    return Integer.toString(x, 2);
+  }
 
   public String addBinary(String a, String b) {
     int length = Math.max(a.length(), b.length());
@@ -66,27 +112,9 @@ public class AddBinary {
 
   public static void main(String[] args) {
     AddBinary solution = new AddBinary();
-
     String a = "1010";
     String b = "1011";
 
-    // todo bit manipulation
-
-    BigInteger x = new BigInteger(a, 2);
-    BigInteger y = new BigInteger(b, 2);
-
-    BigInteger zero = new BigInteger("0", 2);
-
-    BigInteger carry, answer;
-
-    while (y.compareTo(zero) != 0) {
-      answer = x.xor(y);
-      carry = x.and(y).shiftLeft(1);
-      x = answer;
-      y = carry;
-    }
-    System.out.println(x.toString(2));
-
-    System.out.println(solution.addBinary(a, b));
+    System.out.println(solution.addBinary2(a, b));
   }
 }
