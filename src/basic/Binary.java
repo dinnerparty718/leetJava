@@ -20,9 +20,9 @@ public class Binary {
 
   public static void main(String[] args) {
     //built-in function
-    int a = 7; // 111  bitcount3
+    // int a = 7; // 111  bitcount3
 
-    Binary solution = new Binary();
+    // Binary solution = new Binary();
 
     System.out.println(Integer.toBinaryString(0));
   }

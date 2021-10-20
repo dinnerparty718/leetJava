@@ -12,8 +12,8 @@ public class DataType {
     String c = "hello";
 
     System.out.println(c.charAt(0));
-    // System.out.println(a);
-    // System.out.println(b);
+    System.out.println(a);
+    System.out.println(b);
 
     // System.out.println();
   }
