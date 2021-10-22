@@ -1,23 +1,114 @@
 package dataStructure.linkedList;
 
+// singly linked list
 public class MyLinkedList {
 
-  public MyLinkedList() {}
+  MyListNode head;
 
-  public int get(int index) {
-    return 0;
+  int size = 0;
+
+  public MyLinkedList() {
+    this.head = new MyListNode(0);
   }
 
-  public void addAtHead(int val) {}
+  public int get(int index) {
+    if (index > this.size - 1) {
+      System.out.println("out of bound");
+      return -1;
+    }
 
-  public void addAtTail(int val) {}
+    MyListNode curr = this.head;
 
-  public void addAtIndex(int index, int val) {}
+    for (int i = 0; i < index + 1; i++) {
+      curr = curr.next;
+    }
 
-  public void deleteAtIndex(int index) {}
+    return curr.val;
+  }
+
+  public void addAtHead(int val) {
+    this.addAtIndex(0, val);
+  }
+
+  public void addAtTail(int val) {
+    this.addAtIndex(this.size, val);
+  }
+
+  public void addAtIndex(int index, int val) {
+    if (index > this.size) {
+      System.out.println("index greater than size");
+      return;
+    }
+
+    MyListNode pred = head;
+
+    // find the pred
+    for (int i = 0; i < index; i++) {
+      pred = pred.next;
+    }
+
+    MyListNode node = new MyListNode(val);
+
+    node.next = pred.next;
+
+    pred.next = node;
+
+    this.size += 1;
+  }
+
+  public void deleteAtIndex(int index) {
+    if (index > this.size - 1) {
+      System.out.println("out of bound");
+      return;
+    }
+
+    // find pre
+
+    System.out.println("delete item at index " + index);
+
+    MyListNode pred = this.head;
+
+    for (int i = 0; i < index; i++) {
+      pred = pred.next;
+    }
+
+    pred.next = pred.next.next;
+
+    this.size -= 1;
+  }
+
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("Size " + this.size + "\n");
+
+    sb.append("head");
+
+    MyListNode curr = head;
+
+    while (curr.next != null) {
+      curr = curr.next;
+      sb.append(" -> " + curr.val);
+    }
+
+    return sb.toString();
+  }
 
   public static void main(String[] args) {
-    System.out.println("");
+    MyLinkedList list = new MyLinkedList();
+
+    list.addAtIndex(0, 9);
+    list.addAtIndex(0, 8);
+    list.addAtHead(7);
+    list.addAtHead(11);
+    list.addAtTail(999);
+
+    System.out.println(list);
+
+    System.out.println(list.get(4));
+    list.deleteAtIndex(1);
+
+    System.out.println(list);
   }
 }
 
