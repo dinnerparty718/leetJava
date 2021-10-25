@@ -26,6 +26,21 @@ public class MyLinkedList {
     return curr.val;
   }
 
+  public MyListNode getNode(int index) {
+    if (index > this.size - 1) {
+      System.out.println("out of bound");
+      return null;
+    }
+
+    MyListNode curr = this.head;
+
+    for (int i = 0; i < index + 1; i++) {
+      curr = curr.next;
+    }
+
+    return curr;
+  }
+
   public void addAtHead(int val) {
     this.addAtIndex(0, val);
   }
@@ -92,6 +107,10 @@ public class MyLinkedList {
     }
 
     return sb.toString();
+  }
+
+  public MyListNode getHead() {
+    return this.head;
   }
 
   public static void main(String[] args) {
