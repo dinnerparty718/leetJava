@@ -20,5 +20,17 @@ public class TestStack {
     if (myStack.isEmpty()) {
       System.out.println("stack is empty");
     }
+
+    List<Integer> list = new ArrayList<>();
+    list.add(1);
+    // list.add(null);
+
+    System.out.println(list.remove(null));
+    System.out.println(list);
+
+
+    List<List<Integer>> ad = new ArrayList<>();
+    System.out.println(ad.size());
+
   }
 }
