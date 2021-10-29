@@ -1,9 +1,6 @@
 package dataStructure.queue;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class Solution {
