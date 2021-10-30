@@ -34,4 +34,13 @@ public class TreeNode {
 
     System.out.println(root.val);
   }
+
+  public static void preOrderPrint(TreeNode root) {
+    if (root == null) return;
+
+    System.out.println(root.val);
+
+    preOrderPrint(root.left);
+    preOrderPrint(root.right);
+  }
 }
